@@ -25,7 +25,11 @@ def threaded(items, func, num_threads=5, max_queue=200):
     for i in range(num_threads):
         t = Thread(target=queue_consumer)
         t.daemon = True
-        t.start()
+        try:
+            t.start()
+        except:
+            pass
+
 
     for item in items:
         queue.put(item, True)
